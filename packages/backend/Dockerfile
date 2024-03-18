@@ -13,5 +13,7 @@ EXPOSE 18411
 
 RUN npx prisma generate
 
+RUN npx prisma migrate
+
 # 启动后端应用
 CMD ["npm", "run", "start"]

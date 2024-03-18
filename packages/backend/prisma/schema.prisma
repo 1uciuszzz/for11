@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  username String @unique
+  password String
+}
+
+model Account {
+  id      String @id @default(uuid())
+  name    String
+  balance Int
+  date    String
+  userId  String
+}
+
+model Bucket {
+  id          String  @id @default(uuid())
+  name        String
+  description String
+  createdAt   String
+  finishedAt  String?
+  userId      String
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  name        String
+  description String
+  count       Int
+  price       Int
+  preview     String?
+  createdAt   String
+  purchasedAt String?
+  userId      String
+}
+
+model File {
+  id        String @id @default(uuid())
+  sha256    String @unique
+  size      Int
+  userId    String
+  bytes     Bytes
+  mimeType  String
+  createdAt String
+}
+
+model Profile {
+  id        String  @id @default(uuid())
+  userId    String  @unique
+  firstName String?
+  lastName  String?
+  email     String?
+  phone     String?
+  birthday  String?
+  company   String?
+  salary    Int?
+  payday    Int?
+  createdAt String
+}
